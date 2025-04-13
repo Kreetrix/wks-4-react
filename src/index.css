@@ -19,6 +19,8 @@ h1 {
 }
 
 .main-box {
+  margin-left: 150px;
+  margin-right: 150px;
   display: flex;
   flex-direction: column;
   text-align: center;
