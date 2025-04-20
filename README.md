@@ -1,1 +1,1 @@
-open [this](https://users.metropolia.fi/~vladimka/hooks/) to view it in the browser.
+open [this](https://users.metropolia.fi/~vladimka/custom-hooks/) to view it in the browser.
