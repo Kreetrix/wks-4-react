@@ -1,15 +1,15 @@
 import {useState, useEffect} from 'react';
 
+const fetchData = async (url, options = {}) => {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return await response.json();
+};
+
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
-
-  const fetchData = async (url) => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.json();
-  };
 
   const getMedia = async () => {
     try {
@@ -38,4 +38,52 @@ const useMedia = () => {
   return {mediaArray};
 };
 
-export {useMedia};
+const useAuthentication = () => {
+  const postLogin = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await fetchData(
+      import.meta.env.VITE_AUTH_API + '/auth/login',
+      fetchOptions,
+    );
+  };
+
+  return {postLogin};
+};
+
+const useUser = () => {
+  const getUserByToken = async (token) => {
+    const fetchOptions = {
+      headers: {
+        'x-access-token': token,
+      },
+    };
+    return await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users/token',
+      fetchOptions,
+    );
+  };
+
+  const postUser = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users',
+      fetchOptions,
+    );
+  };
+
+  return {getUserByToken, postUser};
+};
+
+export {useMedia, useAuthentication, useUser};
