@@ -1,25 +1,7 @@
-import {useEffect, useState} from 'react';
-import {useUser} from '../hooks/apiHooks';
+import {useUserContext} from '../hooks/contextHooks';
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
-  const {getUserByToken} = useUser();
-
-  const getUser = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const userData = await getUserByToken(token);
-        setUser(userData);
-      }
-    } catch (error) {
-      console.error('Error fetching user:', error);
-    }
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  const {user} = useUserContext();
 
   return (
     <>

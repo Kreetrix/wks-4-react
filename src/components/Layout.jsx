@@ -1,7 +1,13 @@
-import {Link, Outlet} from 'react-router';
+import {Link, Outlet} from 'react-router-dom';
+import {useEffect} from 'react';
+import {useUserContext} from '../hooks/contextHooks';
 
 const Layout = () => {
-  const token = localStorage.getItem('token');
+  const {user, handleAutoLogin} = useUserContext();
+
+  useEffect(() => {
+    handleAutoLogin();
+  }, [handleAutoLogin]);
 
   return (
     <div className="main-box">
@@ -10,17 +16,20 @@ const Layout = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/upload">Upload</Link>
-          </li>
-          {token ? (
-            <li>
-              <Link to="/logout">Logout</Link>
-            </li>
-          ) : (
+          {user && (
+            <>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/upload">Upload</Link>
+              </li>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
+            </>
+          )}
+          {!user && (
             <li>
               <Link to="/login">Login</Link>
             </li>
