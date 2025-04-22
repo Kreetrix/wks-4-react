@@ -3,13 +3,11 @@ import {useNavigate} from 'react-router';
 import useForm from '../hooks/formHooks';
 import {useFile} from '../hooks/apiHooks';
 import {useMedia} from '../hooks/apiHooks';
-import {useUserContext} from '../hooks/contextHooks';
 
 const Upload = () => {
   const [file, setFile] = useState(null);
   const {postFile} = useFile();
   const {postMedia} = useMedia();
-  const {user} = useUserContext();
   const navigate = useNavigate();
 
   const initValues = {
@@ -26,25 +24,13 @@ const Upload = () => {
   const doUpload = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!file || !user || !token) return;
-
-      const fileData = await postFile(file, token);
-
-      const mediaObject = {
-        title: inputs.title,
-        description: inputs.description,
-        filename: fileData.filename,
-        filesize: fileData.filesize,
-        media_type: fileData.media_type,
-      };
-
-      await postMedia(mediaObject, token);
-
-      setFile(null);
+      const fileResult = await postFile(file, token);
+      console.log('File upload result:', fileResult);
+      const mediaResult = await postMedia(fileResult.data, inputs, token);
+      console.log('Media result: ' + mediaResult);
       navigate('/');
     } catch (e) {
-      console.error(e.message);
-      alert('Upload failed: ' + e.message);
+      console.log(e.message);
     }
   };
 

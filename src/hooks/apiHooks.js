@@ -31,14 +31,18 @@ const useMedia = () => {
     }
   };
 
-  const postMedia = async (mediaObject, token) => {
+  const postMedia = async (file, inputs, token) => {
+    const data = {
+      ...inputs,
+      ...file,
+    };
     const fetchOptions = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-access-token': token,
+        Authorization: 'Bearer: ' + token,
       },
-      body: JSON.stringify(mediaObject),
+      body: JSON.stringify(data),
     };
 
     return await fetchData(
@@ -63,10 +67,12 @@ const useAuthentication = () => {
       },
       body: JSON.stringify(inputs),
     };
-    return await fetchData(
+    const res = await fetchData(
       import.meta.env.VITE_AUTH_API + '/auth/login',
       fetchOptions,
     );
+    console.log(res);
+    return res;
   };
 
   return {postLogin};
@@ -76,7 +82,7 @@ const useUser = () => {
   const getUserByToken = async (token) => {
     const fetchOptions = {
       headers: {
-        'x-access-token': token,
+        Authorization: 'Bearer: ' + token,
       },
     };
     return await fetchData(
@@ -110,7 +116,7 @@ const useFile = () => {
     const fetchOptions = {
       method: 'POST',
       headers: {
-        'x-access-token': token,
+        Authorization: 'Bearer: ' + token,
       },
       body: formData,
     };

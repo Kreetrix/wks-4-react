@@ -13,27 +13,21 @@ const UserProvider = ({children}) => {
 
   const handleLogin = async (credentials) => {
     try {
+      console.log(credentials);
       const loginResult = await postLogin(credentials);
-      if (loginResult.token) {
-        localStorage.setItem('token', loginResult.token);
-        const userResult = await getUserByToken(loginResult.token);
-        setUser(userResult);
-        navigate('/');
-      }
+      localStorage.setItem('token', loginResult.token);
+      navigate('/');
+      console.log('User: ' + loginResult.user);
+      setUser(loginResult.user);
     } catch (e) {
-      console.log(e.message);
-      throw e;
+      throw new Error(e.message);
     }
   };
 
   const handleLogout = () => {
-    try {
-      localStorage.removeItem('token');
-      setUser(null);
-      navigate('/');
-    } catch (e) {
-      console.log(e.message);
-    }
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/');
   };
 
   const handleAutoLogin = async () => {
@@ -41,8 +35,9 @@ const UserProvider = ({children}) => {
       const token = localStorage.getItem('token');
       if (token) {
         const userResult = await getUserByToken(token);
-        setUser(userResult);
-        navigate(location.pathname);
+        setUser(userResult.user);
+        const origin = location.pathname || '/';
+        navigate(origin);
       }
     } catch (e) {
       console.log(e.message);
