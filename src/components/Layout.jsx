@@ -10,33 +10,55 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="main-box">
-      <nav>
-        <ul>
+    <div className="mx-[150px] flex flex-col text-center items-center">
+      <nav className="bg-[#0076cb65] p-4">
+        <ul className="flex list-none m-0 p-0 gap-4">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="text-white no-underline hover:underline" to="/">
+              Home
+            </Link>
           </li>
           {user && (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link
+                  className="text-white no-underline hover:underline"
+                  to="/profile"
+                >
+                  Profile
+                </Link>
               </li>
               <li>
-                <Link to="/upload">Upload</Link>
+                <Link
+                  className="text-white no-underline hover:underline"
+                  to="/upload"
+                >
+                  Upload
+                </Link>
               </li>
               <li>
-                <Link to="/logout">Logout</Link>
+                <Link
+                  className="text-white no-underline hover:underline"
+                  to="/logout"
+                >
+                  Logout
+                </Link>
               </li>
             </>
           )}
           {!user && (
             <li>
-              <Link to="/login">Login</Link>
+              <Link
+                className="text-white no-underline hover:underline"
+                to="/login"
+              >
+                Login
+              </Link>
             </li>
           )}
         </ul>
       </nav>
-      <main>
+      <main className="m-5">
         <Outlet />
       </main>
     </div>

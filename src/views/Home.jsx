@@ -9,19 +9,21 @@ const Home = () => {
 
   return (
     <>
-      <h2>My Media</h2>
+      <h2 className="text-3xl font-bold mb-6 text-white text-center">
+        My Media
+      </h2>
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <table>
-        <thead>
+        <thead className="bg-[#35373a] text-white">
           <tr>
-            <th>Thumbnail</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Owner</th>
-            <th>Created</th>
-            <th>Size</th>
-            <th>Type</th>
-            <th>Actions</th>
+            <th className="px-4 py-3 text-left">Thumbnail</th>
+            <th className="px-4 py-3 text-left">Title</th>
+            <th className="px-4 py-3 text-left">Description</th>
+            <th className="px-4 py-3 text-left">Owner</th>
+            <th className="px-4 py-3 text-left">Created</th>
+            <th className="px-4 py-3 text-left">Size</th>
+            <th className="px-4 py-3 text-left">Type</th>
+            <th className="px-4 py-3 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
