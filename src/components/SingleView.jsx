@@ -1,4 +1,5 @@
 import {useRef, useEffect} from 'react';
+import Likes from './likes';
 
 const SingleView = ({item, setSelectedItem}) => {
   const dialogRef = useRef();
@@ -40,6 +41,11 @@ const SingleView = ({item, setSelectedItem}) => {
         <p>Uploaded: {new Date(item.created_at).toLocaleString('fi-FI')}</p>
         <p>Size: {(item.filesize / 1024).toFixed(1)} KB</p>
         <p>Type: {item.media_type}</p>
+
+        {/* Add Likes component here */}
+        <div className="mt-4">
+          <Likes mediaId={item.media_id} />
+        </div>
       </div>
       <button
         onClick={closeDialog}

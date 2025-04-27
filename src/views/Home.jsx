@@ -9,9 +9,7 @@ const Home = () => {
 
   return (
     <>
-      <h2 className="text-3xl font-bold mb-6 text-white text-center">
-        My Media
-      </h2>
+      <h2 className="text-3xl font-bold mb-6 text-white text-center">Media</h2>
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <table>
         <thead className="bg-[#35373a] text-white">
