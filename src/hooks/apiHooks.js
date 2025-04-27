@@ -31,6 +31,10 @@ const useMedia = () => {
     }
   };
 
+  useEffect(() => {
+    getMedia();
+  }, []);
+
   const postMedia = async (file, inputs, token) => {
     const data = {
       ...inputs,
@@ -50,10 +54,6 @@ const useMedia = () => {
       fetchOptions,
     );
   };
-
-  useEffect(() => {
-    getMedia();
-  }, []);
 
   const deleteMedia = async (id, token) => {
     const fetchOptions = {

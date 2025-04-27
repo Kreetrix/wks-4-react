@@ -1,17 +1,23 @@
 import {useUserContext} from '../hooks/contextHooks';
+import {useState} from 'react';
+import ModifyView from './ModifyView';
+import DeleteView from './DeleteView';
 
 const MediaRow = ({item, setSelectedItem}) => {
   const {user} = useUserContext();
+
+  const [modifyItem, setModifyItem] = useState(null);
+  const [deleteItem, setDeleteItem] = useState(null);
 
   const isAuthorized =
     user && (user.user_id === item.user_id || user.role === 'admin');
 
   const handleModify = () => {
-    console.log('modify', item);
+    setModifyItem(item);
   };
 
   const handleDelete = () => {
-    console.log('delete', item);
+    setDeleteItem(item);
   };
 
   return (
@@ -58,6 +64,12 @@ const MediaRow = ({item, setSelectedItem}) => {
                 Delete
               </button>
             </>
+          )}
+          {modifyItem && (
+            <ModifyView item={modifyItem} setSelectedItem={setModifyItem} />
+          )}
+          {deleteItem && (
+            <DeleteView item={deleteItem} setSelectedItem={setDeleteItem} />
           )}
         </div>
       </td>
