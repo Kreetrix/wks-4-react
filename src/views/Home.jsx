@@ -16,14 +16,14 @@ const Home = () => {
       <table>
         <thead className="bg-[#35373a] text-white">
           <tr>
-            <th className="px-4 py-3 text-left">Thumbnail</th>
-            <th className="px-4 py-3 text-left">Title</th>
-            <th className="px-4 py-3 text-left">Description</th>
-            <th className="px-4 py-3 text-left">Owner</th>
-            <th className="px-4 py-3 text-left">Created</th>
-            <th className="px-4 py-3 text-left">Size</th>
-            <th className="px-4 py-3 text-left">Type</th>
-            <th className="px-4 py-3 text-left">Actions</th>
+            <th className="px-4 py-3 text-center">Thumbnail</th>
+            <th className="px-4 py-3 text-center">Title</th>
+            <th className="px-4 py-3 text-center">Description</th>
+            <th className="px-4 py-3 text-center">Owner</th>
+            <th className="px-4 py-3 text-center">Created</th>
+            <th className="px-4 py-3 text-center">Size</th>
+            <th className="px-4 py-3 text-center">Type</th>
+            <th className="px-4 py-3 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>

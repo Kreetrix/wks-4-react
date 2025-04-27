@@ -28,10 +28,10 @@ const RegisterForm = ({setShowLogin}) => {
   );
 
   return (
-    <>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="p-4 space-y-4">
+      <h1 className="text-2xl font-bold">Register</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex flex-col">
           <label htmlFor="registeruser">Username</label>
           <input
             name="username"
@@ -39,9 +39,10 @@ const RegisterForm = ({setShowLogin}) => {
             id="registeruser"
             onChange={handleInputChange}
             autoComplete="username"
+            className="p-2 rounded bg-[#35373a] text-white"
           />
         </div>
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="registerpassword">Password</label>
           <input
             name="password"
@@ -49,9 +50,10 @@ const RegisterForm = ({setShowLogin}) => {
             id="registerpassword"
             onChange={handleInputChange}
             autoComplete="new-password"
+            className="p-2 rounded bg-[#35373a] text-white"
           />
         </div>
-        <div>
+        <div className="flex flex-col">
           <label htmlFor="registeremail">Email</label>
           <input
             name="email"
@@ -59,12 +61,23 @@ const RegisterForm = ({setShowLogin}) => {
             id="registeremail"
             onChange={handleInputChange}
             autoComplete="email"
+            className="p-2 rounded bg-[#35373a] text-white"
           />
         </div>
-        <button type="submit">Register</button>
+        <button
+          type="submit"
+          className="p-2 bg-green-600 rounded hover:bg-green-700 text-white"
+        >
+          Register
+        </button>
       </form>
-      <button onClick={() => setShowLogin(true)}>Login instead</button>
-    </>
+      <button
+        onClick={() => setShowLogin(true)}
+        className="text-sm underline text-blue-400"
+      >
+        Login instead
+      </button>
+    </div>
   );
 };
 

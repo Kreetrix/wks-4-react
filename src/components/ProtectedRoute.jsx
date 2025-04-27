@@ -1,4 +1,5 @@
 import {useUserContext} from '../hooks/contextHooks';
+import {Navigate} from 'react-router';
 
 const ProtectedRoute = ({children}) => {
   const {user} = useUserContext();

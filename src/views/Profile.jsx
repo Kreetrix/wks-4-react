@@ -4,10 +4,10 @@ const Profile = () => {
   const {user} = useUserContext();
 
   return (
-    <>
-      <h2>Profile</h2>
+    <div className="p-4 space-y-4 text-white">
+      <h2 className="text-2xl font-bold">Profile</h2>
       {user ? (
-        <div>
+        <div className="space-y-2">
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
           <p>Created at: {new Date(user.created_at).toLocaleString('fi-FI')}</p>
@@ -15,7 +15,7 @@ const Profile = () => {
       ) : (
         <p>No user data available</p>
       )}
-    </>
+    </div>
   );
 };
 
